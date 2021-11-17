@@ -1,0 +1,58 @@
+.detail-layout {
+  width: 30%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-family: initial;
+  height: 100%;
+}
+
+.flight-control {
+  text-align: left;
+  display: flex;
+  -webkit-box-shadow: 0 4px 6px -6px #000000;
+  -moz-box-shadow: 0 4px 6px -6px #000000;
+  box-shadow: 0 4px 6px -6px #000000;
+}
+
+.link {
+  margin: 10px;
+  padding-right: 20px;
+  border-right: 0.1px solid rgb(114, 92, 114);
+}
+
+.flight-detail {
+  text-align: left;
+  -webkit-box-shadow: 0 4px 6px -6px #000000;
+  -moz-box-shadow: 0 4px 6px -6px #000000;
+  box-shadow: 0 4px 6px -6px #000000;
+}
+
+.color-code {
+  -webkit-box-shadow: 0 4px 6px -6px #000000;
+  -moz-box-shadow: 0 4px 6px -6px #000000;
+  box-shadow: 0 4px 6px -6px #000000;
+  height: 10%;
+}
+
+.service {
+  text-align: left;
+  height: 10%;
+}
+
+.service ul {
+  list-style-type: circle;
+}
+
+@media (max-width: 800px) {
+  .detail-layout {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-layout {
+    font-size: x-small;
+  }
+}

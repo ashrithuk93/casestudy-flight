@@ -1,0 +1,15 @@
+.change-seat {
+  text-align: left;
+}
+
+.change-seat ol {
+  padding-left: 35px;
+}
+
+.change-seat ol li {
+  margin: 5px;
+}
+
+.change-seat ol li:hover {
+  background-color: rgb(102, 101, 99);
+}

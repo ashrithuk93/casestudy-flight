@@ -1,0 +1,52 @@
+header,
+nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(196, 201, 201);
+  position: sticky;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 30px;
+  color: rgb(107, 107, 107);
+}
+
+.manage {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.button {
+  background-color: rgb(196, 201, 201);
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 0.1px solid rgb(110, 109, 110);
+  padding-top: 20px;
+}
+
+.button:hover {
+  background-color: blueviolet;
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: xx-small;
+    margin-left: 10px;
+  }
+  .button {
+    font-size: small;
+    padding-top: 10px;
+  }
+  .home {
+    padding-top: 10px;
+  }
+}

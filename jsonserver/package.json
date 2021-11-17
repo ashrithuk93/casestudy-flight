@@ -1,0 +1,11 @@
+{
+  "name": "jsonserver",
+  "version": "1.0.0",
+  "description": "Fake rest api",
+  "main": "index.js",
+  "scripts": {
+    "json:server": "json-server --watch db.json --port 8000"
+  },
+  "author": "Ashrith UK",
+  "license": "ISC"
+}

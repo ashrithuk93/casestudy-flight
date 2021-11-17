@@ -1,0 +1,52 @@
+.outline {
+  width: 30%;
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
+  box-shadow: -20px 0 20px -20px #000000 inset;
+}
+
+.bar {
+  margin-top: 140px;
+  margin-left: 5%;
+}
+
+.business-bar {
+  width: 10px;
+  height: 280px;
+  margin-bottom: 10px;
+  background-color: chartreuse;
+}
+
+.economy-bar {
+  width: 10px;
+  height: 700px;
+  background-color: rgb(48, 68, 26);
+}
+
+@media (max-width: 800px) {
+  .outline {
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    -webkit-box-shadow: 0 4px 6px -6px #000000;
+    -moz-box-shadow: 0 4px 6px -6px #000000;
+    box-shadow: 0 4px 6px -6px #000000;
+  }
+}
+
+@media (max-width: 480px) {
+  .bar {
+    margin-top: 90px;
+  }
+  .business-bar {
+    height: 80px;
+  }
+
+  .economy-bar {
+    height: 190px;
+  }
+}
