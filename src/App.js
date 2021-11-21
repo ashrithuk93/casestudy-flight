@@ -24,37 +24,35 @@ function App() {
       <Suspense fallback={<LoadingSpinner />}>
         <Switch>
           <Route path="/login">
-            <Layout>
-              <Login />
-            </Layout>
+            <Login />
           </Route>
           <Route path="/flight" exact>
             <Select />
           </Route>
-          <Route path="/flight/:id">
+          <Route path="/flight/:id" exact>
             <Home />
           </Route>
-          <Route path="/bookings/:id/:seat">
+          <Route path="/bookings/:id/:seat" exact>
             <Modal>
               <Layout>
                 <BookingForm />
               </Layout>
             </Modal>
           </Route>
-          <Route path="/info/:id/:seat">
+          <Route path="/info/:id/:seat" exact>
             <Modal>
               <Layout>
                 <InfoPassenger />
               </Layout>
             </Modal>
           </Route>
-          <Route path="/anscillaries/:id">
+          <Route path="/anscillaries/:id" exact>
             <Manage />
           </Route>
-          <Route path="/list/:id">
+          <Route path="/list/:id" exact>
             <Passengers />
           </Route>
-          <Route path="/manage">
+          <Route path="/manage" exact>
             <Passengers />
           </Route>
           <Route path="*">

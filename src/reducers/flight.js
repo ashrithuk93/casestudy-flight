@@ -1,5 +1,4 @@
 import {
-  LOAD_DATA,
   CHECK_IN,
   DELETE_PASSENGER,
   EDIT_PASSENGER,
@@ -49,11 +48,6 @@ export default function flight(state = initalState, action) {
 
   if (type === CURRENT_USER) {
     return { ...state, loading: false, current_user: payload };
-  }
-
-  if (type === LOAD_DATA) {
-    localStorage.setItem("flightData", JSON.stringify(payload));
-    return [...payload];
   }
 
   if (
@@ -147,8 +141,6 @@ export default function flight(state = initalState, action) {
 
     return updatedState_2;
   }
-
-  localStorage.setItem("flightData", JSON.stringify(state));
 
   return state;
 }

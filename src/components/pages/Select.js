@@ -25,7 +25,7 @@ const Select = () => {
     <Layout>
       <div className={classes.list}>
         <h3 className={classes.header}>Select Flight from the list</h3>
-        <ul>
+        <ul data-testid="list-flight">
           {data.flight.map((flight) => (
             <li
               key={flight.id}

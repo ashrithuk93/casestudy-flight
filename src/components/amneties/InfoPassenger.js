@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, withRouter } from "react-router-dom";
 import { changeSeat } from "../../actions/flight";
 import { currentUser } from "../../actions/flight";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -77,11 +77,12 @@ const InfoPassenger = () => {
             onClick={() => {
               if (changedSeat > 0 && changedSeat <= 40) {
                 dispatch(
-                  changeSeat({
-                    id: params.id,
-                    seat: data.current_user.seat,
-                    newSeat: changedSeat,
-                  })
+                  changeSeat(
+                    params.id,
+                    data.current_user.seat,
+                    changedSeat,
+                    history
+                  )
                 );
 
                 // history.push(`/flight/${params.id}`);
@@ -99,4 +100,4 @@ const InfoPassenger = () => {
   return element;
 };
 
-export default InfoPassenger;
+export default withRouter(InfoPassenger);

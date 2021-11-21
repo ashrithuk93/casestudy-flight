@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import FlightIcon from "@material-ui/icons/Flight";
 import { logout } from "../../actions/user";
@@ -20,45 +20,52 @@ const Header = () => {
     history.push("/login");
   };
 
+  const authLinks = (
+    <ul>
+      <li>
+        <Link to="/flight">
+          <i className="fas fa-home"></i> <span className="hide-sm">Home</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/manage">
+          <i className="fas fa-tasks"></i>{" "}
+          <span className="hide-sm">Manage</span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logoutHandler} href="#!">
+          <i className="fas fa-sign-out-alt"></i>{" "}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
+  const guestLinks = (
+    <ul>
+      <li>
+        <Link to="/flight">
+          <i className="fas fa-home"></i> <span className="hide-sm">Home</span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logoutHandler} href="#!">
+          <i className="fas fa-sign-out-alt"></i>{" "}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
+
   return (
-    <header>
-      <nav className={classes.header}>
-        <div className={classes.title}>
-          <h3>
-            <FlightIcon style={{ height: 20, width: 20 }} />{" "}
-            <span className="hide-sm">Check-In</span>
-          </h3>
-        </div>
-        <div className={classes.manage}>
-          {login && (
-            <div
-              className={classes.button}
-              onClick={() => history.push("/flight")}
-            >
-              <i className="fa fa-home" aria-hidden="true"></i>{" "}
-              <span className="hide-sm">Home</span>
-            </div>
-          )}
-
-          {login && auth && (
-            <div
-              className={classes.button}
-              onClick={() => history.push("/manage")}
-            >
-              <i className="fa fa-tasks" aria-hidden="true"></i>{" "}
-              <span className="hide-sm">Manage</span>
-            </div>
-          )}
-
-          {login && (
-            <div className={classes.button} onClick={logoutHandler}>
-              <i className="fa fa-sign-out" aria-hidden="true"></i>{" "}
-              <span className="hide-sm">Logout</span>
-            </div>
-          )}
-        </div>
-      </nav>
-    </header>
+    <nav className={classes.navbar}>
+      <h3>
+        <FlightIcon style={{ height: 20, width: 20 }} />{" "}
+        <span className="hide-sm">Check-In</span>
+      </h3>
+      {login && !auth && guestLinks}
+      {login && auth && authLinks}
+    </nav>
   );
 };
 

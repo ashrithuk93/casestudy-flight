@@ -23,20 +23,28 @@ const Login = () => {
   };
 
   let renderItem = (
-    <div className={classes.container}>
-      <GoogleLogin
-        clientId="688911498634-soou6j4frburft53lug9ursg0v9b2o6t.apps.googleusercontent.com"
-        buttonText="Google Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-        className={classes.button}
-      />
-      <label className={classes.label}>
-        <input type="checkbox" onChange={accessHandler} />
-        {"Admin access"}
-      </label>
-    </div>
+    <section className={classes.landing}>
+      <div className="dark-overlay">
+        <div className={classes["landing-inner"]}>
+          <h1 className={classes["x-large"]}>Flight Check-In</h1>
+          <p className={classes.lead}>
+            Check-in passengers, book/update tickets for the scheduled flight
+          </p>
+          <GoogleLogin
+            clientId="688911498634-soou6j4frburft53lug9ursg0v9b2o6t.apps.googleusercontent.com"
+            buttonText="Google Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+            className={classes.button}
+          />
+          <label className={classes.label}>
+            <input type="checkbox" onChange={accessHandler} />
+            {"Admin access"}
+          </label>
+        </div>
+      </div>
+    </section>
   );
 
   return renderItem;

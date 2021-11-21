@@ -1,4 +1,3 @@
-export const LOAD_DATA = "LOAD_DATA";
 export const CHECK_IN = "CHECK_IN";
 export const DELETE_PASSENGER = "DELETE_PASSENGER";
 export const EDIT_PASSENGER = "EDIT_PASSENGER";

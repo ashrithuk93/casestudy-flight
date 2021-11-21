@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editPassenger, currentUser } from "../../actions/flight";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, withRouter } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 import classes from "./BookingForm.module.css";
@@ -48,20 +48,21 @@ const BookingForm = () => {
     event.preventDefault();
 
     dispatch(
-      editPassenger({
-        id: params.seat,
-        seatNumber,
-        name,
-        age,
-        address,
-        passport,
-        services,
-        wheelChairValue,
-        infantValue,
-      })
+      editPassenger(
+        {
+          id: params.seat,
+          seatNumber,
+          name,
+          age,
+          address,
+          passport,
+          services,
+          wheelChairValue,
+          infantValue,
+        },
+        history
+      )
     );
-
-    history.push("/manage");
   };
 
   return data.loading ? (
@@ -168,7 +169,7 @@ const BookingForm = () => {
           className={classes.button}
           type="button"
           onClick={() => {
-            history.push("/manage");
+            history.push(`/manage`);
           }}
         >
           Cancel
@@ -178,4 +179,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default withRouter(BookingForm);

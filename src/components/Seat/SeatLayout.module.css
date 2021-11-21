@@ -13,14 +13,14 @@
 
 .business-bar {
   width: 10px;
-  height: 280px;
-  margin-bottom: 10px;
+  height: 300px;
+  margin-bottom: 50px;
   background-color: chartreuse;
 }
 
 .economy-bar {
   width: 10px;
-  height: 700px;
+  height: 750px;
   background-color: rgb(48, 68, 26);
 }
 
@@ -44,6 +44,7 @@
   }
   .business-bar {
     height: 80px;
+    margin-bottom: 10px;
   }
 
   .economy-bar {

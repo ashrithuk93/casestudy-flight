@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -35,8 +35,6 @@ const Passengers = () => {
     setParseValue(data.loading ? [] : data.all_users);
   }, [data.loading]);
 
-  console.log(parseValue);
-
   const onChangeFlight = (e) => {
     setFlight(e.target.value);
   };
@@ -45,43 +43,43 @@ const Passengers = () => {
     setFilterValue(e.target.value);
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
+    if (Number(filterValue) === 1) {
+      setParseValue(
+        data.all_users.length === 0
+          ? []
+          : data.all_users.filter((item) => item.flightId === fName)
+      );
+    }
+    if (Number(filterValue) === 2) {
+      setParseValue(
+        data.all_users.length === 0
+          ? []
+          : data.all_users.filter(
+              (item) => item.passportNo.length === 0 && item.flightId === fName
+            )
+      );
+    }
+    if (Number(filterValue) === 3) {
+      setParseValue(
+        data.all_users.length === 0
+          ? []
+          : data.all_users.filter(
+              (item) => item.address.length === 0 && item.flightId === fName
+            )
+      );
+    }
+    if (Number(filterValue) === 4) {
+      setParseValue(
+        data.all_users.length === 0
+          ? []
+          : data.all_users.filter(
+              (item) => item.name.length !== 0 && item.flightId === fName
+            )
+      );
+    }
 
-    setParseValue(
-      parseValue.length === 0
-        ? []
-        : parseValue.filter((item) => item.flightId === fName)
-    );
-
-    if (filterValue === 1) {
-      setParseValue(
-        parseValue.length === 0
-          ? []
-          : parseValue.filter((item) => item.flightId === fName)
-      );
-    }
-    if (filterValue === 2) {
-      setParseValue(
-        parseValue.length === 0
-          ? []
-          : parseValue.filter((item) => item.passportNo.length === 0)
-      );
-    }
-    if (filterValue === 3) {
-      setParseValue(
-        parseValue.length === 0
-          ? []
-          : parseValue.filter((item) => item.address.length === 0)
-      );
-    }
-    if (filterValue === 4) {
-      setParseValue(
-        parseValue.length === 0
-          ? []
-          : parseValue.filter((item) => item.name.length !== 0)
-      );
-    }
+    dispatch(loadAllPassengers());
   };
 
   return data.loading ? (
@@ -96,7 +94,7 @@ const Passengers = () => {
       </div>
 
       {filterBar && (
-        <form className={classes.form} onSubmit={(e) => submitHandler(e)}>
+        <div className={classes.form}>
           <div>
             <p>
               Choose Flight:{" "}
@@ -126,8 +124,10 @@ const Passengers = () => {
               </select>
             </p>
           </div>
-          <button type="submit">Click to Filter</button>
-        </form>
+          <button type="submit" onClick={submitHandler}>
+            Click to Filter
+          </button>
+        </div>
       )}
 
       <table className={classes.customers}>
@@ -140,7 +140,7 @@ const Passengers = () => {
             <th></th>
             {auth ? <th></th> : null}
           </tr>
-          {data.all_users.map((item) => (
+          {parseValue.map((item) => (
             <tr key={item.id}>
               <td>{item.flightId}</td>
               <td>{item.seat}</td>
@@ -167,6 +167,7 @@ const Passengers = () => {
                   onClick={async () => {
                     await dispatch(currentUser(item.id));
                     history.push(`/bookings/${fName}/${item.id}`);
+                    window.location.reload(false);
                   }}
                 >
                   <button type="button" disabled={auth ? false : true}>
@@ -177,8 +178,8 @@ const Passengers = () => {
               {item.name.length > 0 && auth ? (
                 <td
                   onClick={() => {
-                    dispatch(deletePassenger(item.id));
-                    history.push("/manage");
+                    dispatch(deletePassenger(item.id, history));
+                    window.location.reload(false);
                   }}
                 >
                   <DeleteIcon />
@@ -194,4 +195,4 @@ const Passengers = () => {
   );
 };
 
-export default Passengers;
+export default withRouter(Passengers);
